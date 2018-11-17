@@ -36,7 +36,7 @@ class Index:
         self._set_guestbook(guestbook)
 
         bottle.debug(True)
-        bottle.run(host='localhost', port=8082)
+        bottle.run(host='192.168.33.10', port=8082)
 
 
 if __name__ == '__main__':
