@@ -1,7 +1,4 @@
-import string
-
-
-class GuestbookDAO:
+class GuestbookDAO(object):
     def __init__(self, database):
         self.database = database
         self.persons = database.persons
