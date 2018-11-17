@@ -3,7 +3,7 @@ import pymongo
 import guestbookDAO
 
 
-class Index:
+class Index(object):
     def __init__(self):
         self.connection_string = 'mongodb://localhost'
         self.guestbook = None
