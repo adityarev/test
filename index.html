@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to MongoDB</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            color: #4f494f;
+        }
+
+        form input {
+        	border-radius: 7.5px;
+        }
+
+        h5 {
+        	display: inline;
+        }
+
+        .label {
+        	text-align: right;
+        }
+
+        .guestbook {
+        	float: left;
+        	padding-top: 10px;
+        }
+
+        .person {
+        	width: 100%;
+        	float: left;
+        	padding: 3px;
+        }
+
+        .wrapper {
+        	padding-left: 25px;
+        	padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<h1>Welcome to MongoDB!</h1>
+		
+		<div class="guestbook-input">
+			<form method="post" class="form" action="/newguest">
+				Name: <input type="text" name="name">
+				Email: <input type="text" name="email">
+				<input type="submit" value="Add Guest">
+			</form>
+		</div>
+		
+		<div class="guestbook">
+			<h3>Guests</h3>
+			%for person in persons:
+				<div class="person">
+					<h5>Name: </h5> {{person['name']}},
+					<h5>Email: </h5> {{person['email']}},
+				</div>
+			%end
+		</div>
+	</div>
+</body>
+</html>
