@@ -6,11 +6,16 @@ import guestbookDAO
 class Index:
     def __init__(self):
         self.connection_string = 'mongodb://localhost'
+        self.guestbook = None
+
+    def _set_guestbook(self, guestbook):
+        self.guestbook = guestbook
 
     # This is the default route, our index page. Here we need to read the documents from MongoDB
     @bottle.route('/')
     def guestbook_index(self):
-        persons = guestbook.find_persons()
+        persons = self.guestbook.find_persons()
+
         return bottle.template('index', dict(persons=persons))
 
     # We will post new entries to this route so we can insert them into MongoDB
@@ -18,13 +23,17 @@ class Index:
     def insert_newguest(self):
         name = bottle.request.forms.get('name')
         email = bottle.request.forms.get('email')
-        guestbook.insert_person(name, email)
+
+        self.guestbook.insert_person(name, email)
+
         bottle.redirect('/')
 
     def run(self):
         connection = pymongo.MongoClient(self.connection_string)
         database = connection.persons
+
         guestbook = guestbookDAO.GuestbookDAO(database)
+        self._set_guestbook(guestbook)
 
         bottle.debug(True)
         bottle.run(host='localhost', port=8082)
