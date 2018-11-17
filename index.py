@@ -12,14 +12,14 @@ class Index(object):
         self.guestbook = guestbook
 
     # This is the default route, our index page. Here we need to read the documents from MongoDB
-    @bottle.route('/')
+    # @bottle.route('/')
     def guestbook_index(self):
         persons = self.guestbook.find_persons()
 
         return bottle.template('index', dict(persons=persons))
 
     # We will post new entries to this route so we can insert them into MongoDB
-    @bottle.route('/newguest', method='POST')
+    # @bottle.route('/newguest', method='POST')
     def insert_newguest(self):
         name = bottle.request.forms.get('name')
         email = bottle.request.forms.get('email')
@@ -34,6 +34,10 @@ class Index(object):
 
         guestbook = guestbookDAO.GuestbookDAO(database)
         self._set_guestbook(guestbook)
+
+        # Set Route
+        bottle.route('/', callback=self.guestbook_index)
+        bottle.route('/newguest', method='POST', callback=self.insert_newguest)
 
         bottle.debug(True)
         bottle.run(host='192.168.33.10', port=8082)
