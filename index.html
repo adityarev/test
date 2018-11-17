@@ -61,7 +61,7 @@
 					<h5>Name: </h5> {{person['name']}},
 					<h5>Email: </h5> {{person['email']}}
 					<form method="post" class="form" action="/delete">
-						<input type="hidden" name="_id" value={{person['id']}}>
+						<input type="hidden" name="id" value={{person['_id']}}>
                         <input type="submit" value="Remove">
 					</form>
 				</div>

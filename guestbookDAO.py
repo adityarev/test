@@ -8,13 +8,9 @@ class GuestbookDAO(object):
 
     # Handle the finding of persons
     def find_persons(self):
-        result = []
         persons = self.persons.find()
 
-        for person in persons:
-            result.append({'name': person['name'], 'email': person['email']})
-
-        return result
+        return persons
 
     # Handle the insertion of person
     def insert_person(self, name, email):

@@ -28,7 +28,7 @@ class Index(object):
 
     # Delete an entry from MongoDB
     def delete_guest(self):
-        person_id = bottle.request.forms.get('_id')
+        person_id = bottle.request.forms.get('id')
 
         self.guestbook.delete_person(person_id)
 
