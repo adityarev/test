@@ -53,6 +53,10 @@
 		<div class="guestbook">
 			<h3>Guests</h3>
 			%for person in persons:
+                <script type="text/javascript">
+                    console.log({{person}})
+                </script>
+
 				<div class="person">
 					<h5>Name: </h5> {{person['name']}},
 					<h5>Email: </h5> {{person['email']}}
